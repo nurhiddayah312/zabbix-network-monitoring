@@ -1,0 +1,13 @@
+services:
+  zabbix-agent:
+    image: zabbix/zabbix-agent:alpine-7.0-latest
+    restart: unless-stopped
+    depends_on:
+      - zabbix-server
+    environment:
+      ZBX_HOSTNAME: "Zabbix server"
+      ZBX_SERVER_HOST: zabbix-server
+
+  snmp-device:
+    build: ./snmp-device
+    restart: unless-stopped
